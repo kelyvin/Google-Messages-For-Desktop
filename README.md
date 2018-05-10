@@ -4,7 +4,7 @@
 
 A "native-like" desktop app for [Google Messages](https://www.messagesfordesktop.com/). This desktop app is supported by both [Nativefier](https://github.com/jiahaog/nativefier) and [Electron](https://github.com/electron/electron) version `^1.7.6`.
 
-The Mac, Windows, and Linux apps can be downloaded from the [latest release](https://github.com/kelyvin/Google-Messages-For-Desktop/releases).
+**The Mac, Windows, and Linux apps can be downloaded from the [latest release](https://github.com/kelyvin/Google-Messages-For-Desktop/releases).**
 
 ## Purpose
 The purpose of this project is to build dedicated native-like desktop apps for Google Messages and leverage your OS's built in notification system.
@@ -20,11 +20,19 @@ I have provided utility scripts through the `package.json` to automatically rege
 - `npm run windows:tray` | Rebuild the windows app w/ tray icon support
 - `npm run linux` | Rebuild the linux app
 
-## Notifications on Windows
+## Windows
+
+### Notifications
 To receive notifications on Windows, you'll need to do the following:
 
 1. Add a shortcut of this app to the Start Menu folder
 2. In the "Windows Settings" app, check if the setting for "Show notifications in action center" is on (It might be off by default)
+
+### Release Versions
+Included in the Windows releases are two installation types for Google Messages.
+
+1. Google Messages - when you close the app, it will completely end the process and stop running in the background
+2. Google Messages with Tray - when you close the app, it will still exist in the system tray and run in the background
 
 ### For developers
 These instructions were the result of an active issue with electron + Windows 8/10 and is resolved by setting `app.setAppUserModelId(process.execPath)` within `resources/app/lib/main.js` during electron initialization:
