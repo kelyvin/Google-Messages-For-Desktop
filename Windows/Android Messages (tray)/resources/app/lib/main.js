@@ -1405,6 +1405,8 @@ const extName = __webpack_require__(27);
 
 const {app, shell} = electron;
 
+app.setAppUserModelId(process.execPath);
+
 function getFilenameFromMime(name, mime) {
 	const exts = extName.mime(mime);
 
@@ -3820,7 +3822,7 @@ IndexedSourceMapConsumer.prototype.sourceContentFor =
  * and an object is returned with the following properties:
  *
  *   - line: The line number in the generated source, or null.  The
- *     line number is 1-based. 
+ *     line number is 1-based.
  *   - column: The column number in the generated source, or null.
  *     The column number is 0-based.
  */
@@ -6417,18 +6419,18 @@ function mkdirP (p, opts, f, made) {
     else if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
     if (!made) made = null;
-    
+
     var cb = f || function () {};
     p = path.resolve(p);
-    
+
     xfs.mkdir(p, mode, function (er) {
         if (!er) {
             made = made || p;
@@ -6461,10 +6463,10 @@ mkdirP.sync = function sync (p, opts, made) {
     if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
@@ -6736,7 +6738,7 @@ module.exports = function (arg, url) {
 
                 if (tmp) {
                     params[tmp[1]] = params[tmp[1]] || [];
-                
+
                     params[tmp[1]][tmp[2]] = field[2];
                 }
                 else {
@@ -6810,7 +6812,7 @@ module.exports = function (arg, url) {
 
         // File.
         tmp = _i('/-1', _l.path.substring(1));
-        
+
         if (tmp && (tmp = tmp.match(/(.*?)\.([^.]+)$/))) {
             _l.file = tmp[0];
             _l.filename = tmp[1];

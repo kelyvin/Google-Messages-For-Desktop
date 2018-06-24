@@ -34,3 +34,21 @@ nativefier --platform "windows" --icon android-messages-logo.png --name "Android
 ```
 nativefier --platform "linux" --icon android-messages-logo.png --name "Android Messages" "https://messages.android.com/" --honest --disable-dev-tools --single-instance
 ```
+
+## Notifications on Windows
+To receive notifications on Windows, you'll need you'll need to add a shortcut to the Start Menu folder for this app.
+
+This is done by setting `app.setAppUserModelId(process.execPath)` within `resources/app/lib/main.js` during electron initialization:
+
+Example:
+
+```javascript
+const {app, shell} = electron;
+
+app.setAppUserModelId(process.execPath);  // Include this line
+
+function getFilenameFromMime(name, mime) {
+  const exts = extName.mime(mime);
+  ...
+```
+
