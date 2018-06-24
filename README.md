@@ -1,6 +1,6 @@
 # Andorid Messages for Desktop
 
-![Andorid Messages Home Page](http://i.imgur.com/5g1VU3S.png)
+![Andorid Messages Home Page](https://i.imgur.com/OVKBkNY.png)
 
 A "native-like" desktop app for [Andorid Messages](https://www.allofordesktop.com/). This desktop app is supported by both [Nativefier](https://github.com/jiahaog/nativefier) and [Electron](https://github.com/electron/electron) version `^1.7.6`.
 
