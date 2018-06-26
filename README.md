@@ -36,9 +36,14 @@ nativefier --platform "linux" --icon android-messages-logo.png --name "Android M
 ```
 
 ## Notifications on Windows
-To receive notifications on Windows, you'll need you'll need to add a shortcut to the Start Menu folder for this app.
+To receive notifications on Windows, you'll need to do the following: 
 
-This is done by setting `app.setAppUserModelId(process.execPath)` within `resources/app/lib/main.js` during electron initialization:
+1. Add a shortcut of this app to the Start Menu folder
+2. In the "Windows Settings" app, check if the setting for "Show notifications in action center" is on (It might be off by default)
+
+
+### For developers
+These instructions were the result of an active issue with electron + Windows 8/10 and is resolved by setting `app.setAppUserModelId(process.execPath)` within `resources/app/lib/main.js` during electron initialization:
 
 Example:
 
