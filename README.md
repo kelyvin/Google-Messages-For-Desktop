@@ -57,3 +57,28 @@ function getFilenameFromMime(name, mime) {
   ...
 ```
 
+## Ubuntu Shortcut
+Submitted by user [FlorentLM](https://github.com/kelyvin/Android-Messages-For-Desktop/issues/8), to create a shortcut for the Ubuntu launcher, please do the following: 
+
+1. Create and open the shortcut file
+```bash
+nano ~/.local/share/applications/Android-Messages.desktop
+```
+
+2. Copy and paste the following entry inside the file:
+
+```ini
+[Desktop Entry]
+Version=1.0.0
+Name=Android Messages
+Comment=Send and recieve messages from your Android Phone
+Keywords=Message;Messaging;Android;SMS
+Exec=/path/to/installfolder/android-messages
+Icon=/path/to/installfolder/resources/app/icon.png
+Terminal=false
+Type=Application
+Categories=Internet;Application;
+StartupWMClass=android-messages-nativefier-f3cfa3
+```
+
+Be sure to replace /path/to/installfolder/ with your actual installation folder and Android Messages should appear along your other native apps.
