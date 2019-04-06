@@ -22,21 +22,21 @@ npm install -g nativefier
 
 ### Mac
 ```
-nativefier --platform "mac" --icon android-messages-logo.png --name "Android Messages" "https://messages.android.com/" --honest --disable-dev-tools --single-instance
+nativefier --platform "mac" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
 ```
 
 ### Windows
 ```
-nativefier --platform "windows" --icon android-messages-logo.png --name "Android Messages" "https://messages.android.com/" --honest --disable-dev-tools --single-instance --tray
+nativefier --platform "windows" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance --tray
 ```
 
 ### Linux
 ```
-nativefier --platform "linux" --icon android-messages-logo.png --name "Android Messages" "https://messages.android.com/" --honest --disable-dev-tools --single-instance
+nativefier --platform "linux" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
 ```
 
 ## Notifications on Windows
-To receive notifications on Windows, you'll need to do the following: 
+To receive notifications on Windows, you'll need to do the following:
 
 1. Add a shortcut of this app to the Start Menu folder
 2. In the "Windows Settings" app, check if the setting for "Show notifications in action center" is on (It might be off by default)
@@ -58,7 +58,7 @@ function getFilenameFromMime(name, mime) {
 ```
 
 ## Ubuntu Shortcut
-Submitted by user [FlorentLM](https://github.com/kelyvin/Android-Messages-For-Desktop/issues/8), to create a shortcut for the Ubuntu launcher, please do the following: 
+Submitted by user [FlorentLM](https://github.com/kelyvin/Android-Messages-For-Desktop/issues/8), to create a shortcut for the Ubuntu launcher, please do the following:
 
 1. Create and open the shortcut file
 ```bash
