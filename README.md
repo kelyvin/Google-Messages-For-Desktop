@@ -1,13 +1,13 @@
-# Android Messages for Desktop
+# Google Messages for Desktop
 
-![Android Messages Home Page](https://i.imgur.com/OVKBkNY.png)
+![Google Messages Home Page](https://i.imgur.com/OVKBkNY.png)
 
-A "native-like" desktop app for [Android Messages](https://www.messagesfordesktop.com/). This desktop app is supported by both [Nativefier](https://github.com/jiahaog/nativefier) and [Electron](https://github.com/electron/electron) version `^1.7.6`.
+A "native-like" desktop app for [Google Messages](https://www.messagesfordesktop.com/). This desktop app is supported by both [Nativefier](https://github.com/jiahaog/nativefier) and [Electron](https://github.com/electron/electron) version `^1.7.6`.
 
-The Mac, Windows, and Linux apps can be downloaded from the [latest release](https://github.com/kelyvin/Android-Messages-For-Desktop/releases).
+The Mac, Windows, and Linux apps can be downloaded from the [latest release](https://github.com/kelyvin/Google-Messages-For-Desktop/releases).
 
 ## Purpose
-The purpose of this project is to build dedicated native-like desktop apps for Android Messages and leverage your OS's built in notification system.
+The purpose of this project is to build dedicated native-like desktop apps for Google Messages and leverage your OS's built in notification system.
 
 This desktop app and project is not an official product of Google and I am not affiliated with Google in any way.
 
@@ -22,17 +22,17 @@ npm install -g nativefier
 
 ### Mac
 ```
-nativefier --platform "mac" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
+nativefier --platform "mac" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
 ```
 
 ### Windows
 ```
-nativefier --platform "windows" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance --tray
+nativefier --platform "windows" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance --tray
 ```
 
 ### Linux
 ```
-nativefier --platform "linux" --icon android-messages-logo.png --name "Android Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
+nativefier --platform "linux" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
 ```
 
 ## Notifications on Windows
