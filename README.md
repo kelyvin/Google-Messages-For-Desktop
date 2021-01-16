@@ -12,35 +12,19 @@ The purpose of this project is to build dedicated native-like desktop apps for G
 This desktop app and project is not an official product of Google and I am not affiliated with Google in any way.
 
 ## Rebuilding the app
-Requires `nodejs`
+I have provided utility scripts through the `package.json` to automatically regenerate the app. Requires `nodejs v12+` and `npm v6+`
 
-### Nativefier
-Install nativefier and make sure to have your [optional dependencies](https://github.com/jiahaog/nativefier#optional-dependencies) set up to replace the icon.
-```
-npm install -g nativefier
-```
-
-### Mac
-```
-nativefier --platform "mac" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
-```
-
-### Windows
-```
-nativefier --platform "windows" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance --tray
-```
-
-### Linux
-```
-nativefier --platform "linux" --icon android-messages-logo.png --name "Google Messages" "https://messages.google.com/web" --honest --disable-dev-tools --single-instance
-```
+### Quick Commands
+- `npm run mac` | Rebuild the mac app
+- `npm run windows` | Rebuild the windows app
+- `npm run windows:tray` | Rebuild the windows app w/ tray icon support
+- `npm run linux` | Rebuild the linux app
 
 ## Notifications on Windows
 To receive notifications on Windows, you'll need to do the following:
 
 1. Add a shortcut of this app to the Start Menu folder
 2. In the "Windows Settings" app, check if the setting for "Show notifications in action center" is on (It might be off by default)
-
 
 ### For developers
 These instructions were the result of an active issue with electron + Windows 8/10 and is resolved by setting `app.setAppUserModelId(process.execPath)` within `resources/app/lib/main.js` during electron initialization:

@@ -1,0 +1,29 @@
+{
+  "name": "google-messages-for-desktop",
+  "version": "1.2.0",
+  "description": "A \"native-like\" desktop app for Google Messages. ",
+  "main": "index.js",
+  "scripts": {
+    "mac": "npx nativefier --platform \"mac\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Mac",
+    "windows": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Windows",
+    "windows:tray": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance --tray dist/Windows_Tray",
+    "linux": "npx nativefier --platform \"linux\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Linux",
+    "build:all": "npm run mac && npm run windows && npm run windows:tray && npm run linux"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelyvin/Google-Messages-For-Desktop.git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "author": "Kelvin Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kelyvin/Google-Messages-For-Desktop/issues"
+  },
+  "homepage": "https://github.com/kelyvin/Google-Messages-For-Desktop#readme",
+  "dependencies": {
+    "nativefier": "^42.0.2"
+  }
+}
