@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/kelyvin/Google-Messages-For-Desktop#readme",
   "dependencies": {
-    "nativefier": "^42.0.2"
+    "nativefier": "^43.0.0"
   }
 }
