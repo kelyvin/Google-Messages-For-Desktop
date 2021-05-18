@@ -54,10 +54,10 @@ nano ~/.local/share/applications/Android-Messages.desktop
 ```ini
 [Desktop Entry]
 Version=1.0.0
-Name=Android Messages
+Name=Google Messages
 Comment=Send and recieve messages from your Android Phone
 Keywords=Message;Messaging;Android;SMS
-Exec=/path/to/installfolder/android-messages
+Exec=/path/to/installfolder/GoogleMessages
 Icon=/path/to/installfolder/resources/app/icon.png
 Terminal=false
 Type=Application
