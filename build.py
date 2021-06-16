@@ -1,18 +1,15 @@
 #!/usr/bin/env python
-import os
-import subprocess
-from subprocess import Popen
-import sys
-import zipfile
-from datetime import datetime
-from pathlib import Path
 import json
-import shutil
-
 import logging
 import logging.handlers
-
-from glob import glob
+import os
+import shutil
+import subprocess
+import sys
+import re
+from datetime import datetime
+from pathlib import Path
+from subprocess import Popen
 
 log_location = "./logs"
 log_filename = "messagesbuild.log"
@@ -29,23 +26,9 @@ build_command = ['/usr/bin/npm', 'run', 'build:all']
 zip_config = {'Linux': ['Linux', 'linux'], 'Mac': ['Mac', 'mac'], 'Windows': ['Windows', 'windows'],
               'Windows_Tray': ['Windows', 'windows-tray']}
 
-
-def run_command(commands:list):
-    print("running {0}".format(" ".join(commands)))
-    p = Popen(commands, stdout=subprocess.PIPE)
-    p.wait()
-    print("".join([str(x) for x in commands]) + ": Success Code - " + str(p.returncode))
-    return p.returncode, p.communicate()[0].decode('utf-8')
-
-def zipdir(path, ziph):
-    # ziph is zipfile handle
-    for root, dir, files in os.walk(path):
-        for file_name in files:
-
-            ziph.write(os.path.join(root, file_name), arcname='.' + PATH_TO_ZIP)
-
 class MessageHandler:
     logger = None
+
     # https://stackoverflow.com/questions/14058453/making-python-loggers-output-all-messages-to-stdout-in-addition-to-log-file
 
     def __init__(self):
@@ -60,84 +43,94 @@ class MessageHandler:
             log_full_path = Path(log_location, log_filename)
             file_handler = logging.handlers.TimedRotatingFileHandler(filename=log_full_path, when='MIDNIGHT',
                                                                      interval=1, backupCount=30)
+            # stdout_handler = logging.StreamHandler(sys.stdout)
             # create formatter
             formatter = logging.Formatter(fmt='%(asctime)s - %(levelname)s - %(message)s',
                                           datefmt=date_format)
             # add formatter to handlers
             console_handler.setFormatter(formatter)
             file_handler.setFormatter(formatter)
+            # stdout_handler.setFormatter(formatter)
             # set levels on handlers
             console_handler.setLevel(logging.INFO)
             file_handler.setLevel(logging.INFO)
+            # stdout_handler.setLevel(logging.DEBUG)
             # sdd handlers to logger
             self.logger.addHandler(console_handler)
             self.logger.addHandler(file_handler)
+            # self.logger.addHandler(stdout_handler)
+            self.logger.log(level=logging.INFO, msg="Logger initialized")
 
-    def log(self, lvl, msg):
+    def log(self, msg, lvl=logging.INFO):
         self.logger.log(lvl, msg)
 
+MESSAGEHANDLER = MessageHandler()
+
+def run_command(commands: list):
+    MESSAGEHANDLER.log("running {0}".format(" ".join(commands)))
+    p = Popen(commands, stdout=subprocess.PIPE)
+    p.wait()
+    MESSAGEHANDLER.log("".join([str(x) for x in commands]) + ": Success Code - " + str(p.returncode))
+    std_output = p.communicate()[0].decode('utf-8')
+    std_output = '\n'.join([x for x in std_output.splitlines() if len(x) > 0])
+    return p.returncode, std_output
+
+
+
 class BuildMessages:
-    _version:str = None
+    _version: str = None
 
     def __init__(self):
         self._version = self.get_package_version()
 
-    def clean(self):
+    @staticmethod
+    def clean():
         if Path(distribution_folder).exists():
-            print("Removing {0}".format(str(Path(distribution_folder).absolute())))
+            MESSAGEHANDLER.log("Removing {0}".format(str(Path(distribution_folder).absolute())))
             shutil.rmtree(Path(distribution_folder))
         for output_folder in output_folders:
             zipfiles = Path(output_folder).glob('*.zip')
             for zipfile in zipfiles:
-                print("removing: {0}".format(zipfile))
+                MESSAGEHANDLER.log("removing: {0}".format(zipfile))
                 os.remove(zipfile)
 
-    def get_package_version(self):
+    @staticmethod
+    def get_package_version():
         with open(package_filename, 'rb') as f:
             run_info = json.loads(f.read())
             version = run_info.get('version')
         return version
 
-    def create_output_files(self):
+    def package(self):
         for k, v in zip_config.items():
             path_to_zip = Path(distribution_folder, k)
             full_out_path = Path(v[0], "google-messages-{0}_v{1}".format(v[1], self._version))
-            print("zipping {0} to {1}".format(path_to_zip, full_out_path))
+            MESSAGEHANDLER.log("zipping {0} to {1}".format(path_to_zip, full_out_path))
             shutil.make_archive(full_out_path, 'zip', path_to_zip)
 
-
-
-    def build(self):
-        _, _ = run_command(build_command)
-
-
-
-
-
-
-
+    @staticmethod
+    def build():
+        ret_code, output = run_command(build_command)
+        MESSAGEHANDLER.log("Built with returncode {0}".format(str(ret_code)))
+        MESSAGEHANDLER.log("Build output begins...")
+        MESSAGEHANDLER.log(str(output))
+        MESSAGEHANDLER.log("End Build output...")
 
 
 if __name__ == '__main__':
-    print(os.getcwd())
+
+    MESSAGEHANDLER.log(os.getcwd())
     nativefier_version = (run_command(["nativefier", "--version"]))[1]
-    print("printing nativefier version")
-    print(nativefier_version)
+    MESSAGEHANDLER.log("printing nativefier version")
+    MESSAGEHANDLER.log(nativefier_version)
 
     build_messages = BuildMessages()
     build_messages.clean()
     build_messages.build()
-    build_messages.create_output_files()
+    build_messages.package()
 
+    MESSAGEHANDLER.log("program finished")
 
-
-
-
-
-
-
-
-    print("program finished")
 
 """
 
