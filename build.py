@@ -87,13 +87,12 @@ def run_command(commands: list):
 
 def zipdir(dir_path, out_path):
     # ziph is zipfile handle
-    ziph = zipfile.ZipFile(out_path, 'w', zipfile.ZIP_DEFLATED)
-    zipfile.ZipFile('Python.zip', 'w', zipfile.ZIP_DEFLATED)
-    for root, dirs, files in os.walk(dir_path):
-        for file in files:
-            ziph.write(os.path.join(root, file),
-                       os.path.relpath(os.path.join(root, file),
-                                       os.path.join(dir_path, '..')))
+    with zipfile.ZipFile(file=out_path, mode='w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as ziph:
+        for root, dirs, files in os.walk(dir_path):
+            for file in files:
+                ziph.write(os.path.join(root, file),
+                           os.path.relpath(os.path.join(root, file),
+                                           os.path.join(dir_path, '..')))
 
 class BuildMessages:
     _version: str = None
@@ -124,9 +123,9 @@ class BuildMessages:
         MESSAGEHANDLER.log('Zipping output to directories...')
         for k, v in zip_config.items():
             path_to_zip = Path(distribution_folder, k)
-            full_out_path = Path(v[0], "google-messages-{0}_v{1}".format(v[1], self._version))
+            full_out_path = Path(v[0], "google-messages-{0}_v{1},zip".format(v[1], self._version))
             MESSAGEHANDLER.log("zipping {0} to {1}".format(path_to_zip, full_out_path))
-            shutil.make_archive(full_out_path, 'zip', path_to_zip)
+            zipdir(dir_path=path_to_zip, out_path=full_out_path)
 
     @staticmethod
     def build():
