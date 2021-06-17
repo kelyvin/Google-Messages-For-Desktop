@@ -16,6 +16,7 @@ from datetime import datetime
 from pathlib import Path
 from subprocess import Popen
 import argparse
+import zipfile
 
 log_location = "./logs"
 log_filename = "messagesbuild.log"
@@ -84,6 +85,15 @@ def run_command(commands: list):
     std_output = '\n'.join([x for x in std_output.splitlines() if len(x) > 0])
     return p.returncode, std_output
 
+def zipdir(dir_path, out_path):
+    # ziph is zipfile handle
+    ziph = zipfile.ZipFile(out_path, 'w', zipfile.ZIP_DEFLATED)
+    zipfile.ZipFile('Python.zip', 'w', zipfile.ZIP_DEFLATED)
+    for root, dirs, files in os.walk(dir_path):
+        for file in files:
+            ziph.write(os.path.join(root, file),
+                       os.path.relpath(os.path.join(root, file),
+                                       os.path.join(dir_path, '..')))
 
 class BuildMessages:
     _version: str = None
