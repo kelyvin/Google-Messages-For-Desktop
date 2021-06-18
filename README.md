@@ -12,7 +12,8 @@ The purpose of this project is to build dedicated native-like desktop apps for G
 This desktop app and project is not an official product of Google and I am not affiliated with Google in any way.
 
 ## Rebuilding the app
-I have provided utility scripts through the `package.json` to automatically regenerate the app. Requires `nodejs v12+` and `npm v6+`
+I have provided utility scripts through the `package.json` to automatically regenerate the app. Requires `nodejs v12+`
+and `npm v6+` (if building in linux, requires [wine](https://www.winehq.org/) to build the windows apps).
 
 ### Quick Commands
 - `npm run mac` | Rebuild the mac app

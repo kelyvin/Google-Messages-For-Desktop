@@ -7,7 +7,7 @@
     "mac": "npx nativefier --platform \"mac\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Mac",
     "windows": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Windows",
     "windows:tray": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance --tray dist/Windows_Tray",
-    "linux": "npx nativefier --platform \"linux\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Linux",
+    "linux": "npx nativefier --platform \"linux\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --user-agent firefox --disable-dev-tools --single-instance dist/Linux",
     "build:all": "npm run mac && npm run windows && npm run windows:tray && npm run linux"
   },
   "repository": {
@@ -22,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/kelyvin/Google-Messages-For-Desktop/issues"
   },
-  "homepage": "https://github.com/kelyvin/Google-Messages-For-Desktop#readme",
-  "dependencies": {
-    "nativefier": "^43.0.0"
-  }
+  "homepage": "https://github.com/kelyvin/Google-Messages-For-Desktop#readme"
 }
