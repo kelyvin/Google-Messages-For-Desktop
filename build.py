@@ -123,7 +123,7 @@ class BuildMessages:
         MESSAGEHANDLER.log('Zipping output to directories...')
         for k, v in zip_config.items():
             path_to_zip = Path(distribution_folder, k).glob('*/').__next__()
-            full_out_path = Path(v[0], "google-messages-{0}_v{1},zip".format(v[1], self._version))
+            full_out_path = Path(v[0], "google-messages-{0}_v{1}.zip".format(v[1], self._version))
             MESSAGEHANDLER.log("zipping {0} to {1}".format(path_to_zip, full_out_path))
             zipdir(dir_path=path_to_zip, out_path=full_out_path)
 
