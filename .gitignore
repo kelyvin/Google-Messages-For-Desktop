@@ -1,3 +1,6 @@
 .DS_STORE
 dist/
+.idea/
 node_modules/
+logs/*
+/google-messages-for-desktop.iml
