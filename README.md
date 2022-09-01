@@ -55,7 +55,7 @@ nano ~/.local/share/applications/Android-Messages.desktop
 [Desktop Entry]
 Version=1.0.0
 Name=Android Messages
-Comment=Send and recieve messages from your Android Phone
+Comment=Send and receive messages from your Android Phone
 Keywords=Message;Messaging;Android;SMS
 Exec=/path/to/installfolder/android-messages
 Icon=/path/to/installfolder/resources/app/icon.png
