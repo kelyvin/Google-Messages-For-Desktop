@@ -4,11 +4,19 @@
   "description": "A \"native-like\" desktop app for Google Messages. ",
   "main": "index.js",
   "scripts": {
-    "mac": "npx nativefier --platform \"mac\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Mac",
-    "windows": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Windows",
-    "windows:tray": "npx nativefier --platform \"windows\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance --tray dist/Windows_Tray",
-    "linux": "npx nativefier --platform \"linux\" --icon android-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Linux",
-    "build:all": "npm run mac && npm run windows && npm run windows:tray && npm run linux"
+    "mac": "npx nativefier --conceal --platform \"mac\" --icon google-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Mac",
+    "windows": "npx nativefier --platform \"windows\" --icon google-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Windows",
+    "windows:tray": "npx nativefier --platform \"windows\" --icon google-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance --tray dist/Windows_Tray",
+    "linux": "npx nativefier --platform \"linux\" --icon google-messages-logo.png --name \"Google Messages\" \"https://messages.google.com/web\" --honest --disable-dev-tools --single-instance dist/Linux",
+    "package:mac": "cd dist/Mac; zip -r ../google-messages-mac_v$(npm -s run env echo '$npm_package_version').zip *",
+    "package:linux": "cd dist/Linux; zip -r ../google-messages-linux_v$(npm -s run env echo '$npm_package_version').zip *",
+    "package:windows": "cd dist/Windows; zip -r ../google-messages-windows_v$(npm -s run env echo '$npm_package_version').zip *",
+    "package:windows_tray": "cd dist/Windows_Tray; zip -r ../google-messages-windows-tray_v$(npm -s run env echo '$npm_package_version').zip *",
+    "clean:dist": "rm -rf dist",
+    "clean:packages": "rm -rf Windows/*.zip Mac/*.zip Linux/*.zip",
+    "build:all": "npm run clean:dist && npm run mac && npm run windows && npm run windows:tray && npm run linux",
+    "package:all": "npm run clean:packages && npm run package:mac && npm run package:linux && npm run package:windows && npm run package:windows_tray",
+    "release": "npm run build:all && npm run package:all"
   },
   "repository": {
     "type": "git",
@@ -24,6 +32,6 @@
   },
   "homepage": "https://github.com/kelyvin/Google-Messages-For-Desktop#readme",
   "dependencies": {
-    "nativefier": "^43.0.0"
+    "nativefier": "^49.0.1"
   }
 }
