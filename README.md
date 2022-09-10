@@ -1,5 +1,7 @@
 # Google Messages for Desktop
 
+> This project is currently in maintenance mode and no new features will be added. If you'd like to use a similar app with potential richer functionality, go check out [OrangeDragon's android-messages-desktop project](https://github.com/OrangeDrangon/android-messages-desktop)!
+
 ![Google Messages Home Page](https://i.imgur.com/OVKBkNY.png)
 
 A "native-like" desktop app for [Google Messages](https://www.messagesfordesktop.com/). This desktop app is supported by both [Nativefier](https://github.com/jiahaog/nativefier) and [Electron](https://github.com/electron/electron) version `^1.7.6`.
